@@ -1,24 +1,40 @@
 export default class Player {
     constructor(x, y) {
-        this.x = x; this.y = y; this.hp = 100;
-        this.size = 30;
+        this.x = x;
+        this.y = y;
+        this.width = 30;
+        this.height = 30;
+        this.vy = 0; // Velocidad vertical
+        this.gravity = 0.8;
+        this.jumpForce = -15;
+        this.onGround = false;
     }
 
-    update(input) {
-        if (input.keys['w']) this.y -= 5;
-        if (input.keys['s']) this.y += 5;
+    update(input, groundY) {
+        // Movimiento horizontal
         if (input.keys['a']) this.x -= 5;
         if (input.keys['d']) this.x += 5;
-        // Soporte Gamepad básico
-        const gp = navigator.getGamepads()[0];
-        if (gp) {
-            this.x += gp.axes[0] * 5;
-            this.y += gp.axes[1] * 5;
+
+        // Salto
+        if ((input.keys['w'] || input.keys[' ']) && this.onGround) {
+            this.vy = this.jumpForce;
+            this.onGround = false;
+        }
+
+        // Aplicar gravedad
+        this.vy += this.gravity;
+        this.y += this.vy;
+
+        // Colisión con el piso (groundY es la altura donde está el suelo)
+        if (this.y + this.height >= groundY) {
+            this.y = groundY - this.height;
+            this.vy = 0;
+            this.onGround = true;
         }
     }
 
     draw(ctx) {
         ctx.fillStyle = 'blue';
-        ctx.fillRect(this.x, this.y, this.size, this.size);
+        ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 }
