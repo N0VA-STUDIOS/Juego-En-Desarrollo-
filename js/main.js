@@ -1,18 +1,32 @@
-import Game from './game.js';
-
 const canvas = document.getElementById('gameCanvas');
-const game = new Game(canvas);
+const ctx = canvas.getContext('2d');
 
+// Resoluciones internas fijas para mantener el aspecto del lienzo
+canvas.width = 800;
+canvas.height = 400;
+
+const game = new Game(canvas, ctx);
+
+// Listeners de los botones de la interfaz
 document.getElementById('start-btn').addEventListener('click', () => {
     document.getElementById('main-menu').classList.add('hidden');
     document.getElementById('hud').classList.remove('hidden');
-    game.start();
+    game.gameState = 'PLAYING';
 });
 
-// Loop principal
+document.getElementById('resume-btn').addEventListener('click', () => {
+    game.togglePause();
+});
+
+document.getElementById('restart-btn').addEventListener('click', () => {
+    game.restart();
+});
+
+// Bucle básico de renderizado e inputs
 function loop() {
     game.update();
     game.draw();
     requestAnimationFrame(loop);
 }
+
 loop();
