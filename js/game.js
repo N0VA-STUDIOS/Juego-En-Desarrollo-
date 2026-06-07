@@ -1,5 +1,4 @@
 import Player from './player.js';
-import Enemy from './enemy.js';
 import Input from './input.js';
 
 export default class Game {
@@ -7,22 +6,23 @@ export default class Game {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.input = new Input();
-        this.player = new Player(400, 300);
-        this.enemies = [new Enemy(100, 100)];
-        this.paused = false;
+        
+        // El suelo estará a 50px del borde inferior
+        this.groundY = this.canvas.height - 50; 
+        this.player = new Player(100, 200);
     }
 
-    start() { this.paused = false; }
-
     update() {
-        if (this.paused) return;
-        this.player.update(this.input);
-        this.enemies.forEach(e => e.update(this.player));
+        this.player.update(this.input, this.groundY);
     }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Dibujar suelo
+        this.ctx.fillStyle = '#555';
+        this.ctx.fillRect(0, this.groundY, this.canvas.width, 50);
+        
         this.player.draw(this.ctx);
-        this.enemies.forEach(e => e.draw(this.ctx));
     }
 }
