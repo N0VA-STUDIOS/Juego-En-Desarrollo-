@@ -1,3 +1,13 @@
+// Añade esto al inicio de main.js para asegurar que el canvas sea grande
+const canvas = document.getElementById('gameCanvas');
+canvas.width = 800;
+canvas.height = 400;
+
+import Game from './game.js';
+const game = new Game(canvas);
+
+// ... resto del código (menús, etc.)
+
 import Game from './game.js';
 
 const canvas = document.getElementById('gameCanvas');
