@@ -1,25 +1,23 @@
-/* Borra todo lo que tengas y pega esto: */
 body { 
     margin: 0; 
     background: #111; 
     overflow: hidden; 
-    color: white; 
-    font-family: sans-serif; 
     display: flex; 
     justify-content: center; 
     align-items: center; 
     height: 100vh; 
+    font-family: sans-serif; 
+    user-select: none;
 }
 
 canvas { 
     display: block; 
-    background: #333; 
-    /* Esto hace que el juego crezca hasta un límite razonable */
+    background: #262626; 
     width: 90vw; 
-    max-width: 800px;
-    height: auto;
-    border: 4px solid #555;
-    image-rendering: pixelated; /* Para que se vea retro */
+    max-width: 800px; 
+    height: auto; 
+    border: 4px solid #444; 
+    image-rendering: pixelated; /* Mantiene los pixeles nítidos en pantallas grandes */
 }
 
 #ui { 
@@ -34,29 +32,60 @@ canvas {
     align-items: center; 
 }
 
+.menu-box {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 30px;
+    border: 3px solid white;
+    text-align: center;
+    pointer-events: auto;
+}
+
+h1, h2 { color: white; margin-top: 0; letter-spacing: 2px; }
+
 button { 
-    pointer-events: auto; 
-    padding: 15px 30px; 
-    font-size: 20px; 
+    padding: 12px 28px; 
+    font-size: 18px; 
+    font-weight: bold;
     cursor: pointer; 
-    background: #444; 
+    background: #333; 
     color: white; 
     border: 2px solid white;
+    transition: 0.1s;
+}
+
+button:hover {
+    background: white;
+    color: black;
 }
 
 .hidden { display: none !important; }
 
-#hud { 
-    position: absolute; 
-    top: 20px; 
-    left: 20px; 
+/* HUD Superior */
+#hud {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#hp-bar { 
     width: 200px; 
     height: 20px; 
     border: 2px solid white; 
+    background: #222;
 }
 
 #hp-fill { 
     width: 100%; 
     height: 100%; 
-    background: red; 
+    background: #ff3333; 
+    transition: width 0.1s ease;
+}
+
+#wave-txt {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
 }
