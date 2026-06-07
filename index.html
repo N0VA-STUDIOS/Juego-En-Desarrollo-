@@ -1,25 +1,91 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Zombie Survival 2D</title>
-</head>
-<body>
-    <div id="ui">
-        <div id="main-menu">
-            <h1>ZOMBIE SURVIVAL</h1>
-            <button id="start-btn">JUGAR</button>
-        </div>
-        <div id="pause-menu" class="hidden">
-            <h2>PAUSA</h2>
-            <button id="resume-btn">CONTINUAR</button>
-        </div>
-        <div id="hud" class="hidden">
-            <div id="hp-bar"><div id="hp-fill"></div></div>
-        </div>
-    </div>
-    <canvas id="gameCanvas"></canvas>
-    <script type="module" src="js/main.js"></script>
-</body>
-</html>
+Crea la base sólida de un juego 2D de supervivencia en HTML5 con estilo plataformero tipo Mario Bros.
+
+Quiero que entregues el proyecto separado por archivos:
+
+index.html
+css/style.css
+js/main.js
+js/game.js
+js/player.js
+js/world.js
+js/enemy.js
+js/input.js
+js/gamepad.js
+
+Requisitos principales:
+
+Juego en canvas HTML5.
+Vista lateral 2D con gravedad, salto y colisiones.
+El jugador debe poder moverse a la izquierda, derecha y saltar.
+Debe haber suelo y plataformas sólidas.
+Debe haber al menos un enemigo básico que camine o persiga al jugador.
+El jugador debe poder atacar.
+El jugador y el enemigo deben tener vida.
+Debe funcionar con teclado y Gamepad API.
+Debe incluir un menú principal simple con botón Jugar.
+Debe incluir menú de pausa.
+Debe ser compatible con GitHub Pages.
+Código limpio, claro y modular.
+Usar JavaScript moderno con ES Modules.
+No mezclar todo en un solo archivo.
+No usar librerías externas.
+
+Sistema del jugador:
+
+Movimiento lateral.
+Salto con gravedad.
+Colisión con suelo y plataformas.
+Animaciones o estados básicos: idle, run, jump, fall, attack, hurt, death.
+Vida visible en HUD.
+
+Sistema del mundo:
+
+Suelo sólido.
+Plataformas simples.
+Colisiones correctas.
+Cámara lateral básica si hace falta.
+
+Sistema de enemigos:
+
+Un zombie básico.
+Vida.
+Daño al jugador.
+Muerte cuando su vida llegue a 0.
+
+Controles:
+
+Teclado:
+
+A / D o flechas = mover
+W / flecha arriba / espacio = saltar
+Espacio o J = atacar
+Escape = pausa
+
+Gamepad:
+
+Stick izquierdo = mover
+Botón A = saltar
+Botón X o botón de ataque = atacar
+Start/Menu = pausa
+
+Objetivo de esta primera versión:
+
+Que el personaje se mueva bien.
+Que salte con física correcta.
+Que exista un piso sólido.
+Que el enemigo funcione.
+Que el ataque funcione.
+Que el juego arranque sin errores.
+
+No agregar todavía:
+
+Sprites complejos.
+Sistema de episodios.
+Bosses.
+Tienda.
+Inventario.
+Guardado.
+Música.
+Efectos avanzados.
+
+Quiero una base profesional, estable y fácil de expandir después a niveles, episodios, enemigos nuevos, bosses, sprites y animaciones.
