@@ -11,6 +11,12 @@ class Game {
         this.gameState = 'MENU'; // Estados: MENU, PLAYING, PAUSE, GAMEOVER
         this.wave = 1;
         this.lastPausePress = false;
+        
+        this.bossEvery = 5;
+        this.bossActive = false;
+        this.boss = null;
+        this.enemiesPerWave = 2;
+    
     }
 
     // Detector de colisión clásico AABB
@@ -40,13 +46,17 @@ class Game {
         this.player.update(this.input, this.groundY);
         document.getElementById('hp-fill').style.width = `${Math.max(0, this.player.hp)}%`;
 
-        // Control de generación de oleadas
-        if (this.enemies.length === 0) {
-            this.wave++;
-            document.getElementById('wave-txt').innerText = `OLEADA: ${this.wave}`;
-            this.enemies.push(new Enemy(Math.random() > 0.5 ? 50 : 750, 100, this.wave * 0.2));
-        }
+       if (this.enemies.length === 0 && !this.bossActive) {
+    this.wave++;
+    document.getElementById('wave-txt').innerText = `OLEADA: ${this.wave}`;
 
+    // 👑 CHECK BOSS
+    if (this.wave % this.bossEvery === 0) {
+        this.spawnBoss();
+    } else {
+        this.spawnWave();
+    }
+}
         // Ciclo de colisiones y actualizaciones de enemigos
         for (let i = this.enemies.length - 1; i >= 0; i--) {
             let enemy = this.enemies[i];
