@@ -2,8 +2,8 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 // Resoluciones internas fijas para mantener el aspecto del lienzo
-canvas.width = 1920;
-canvas.height = 1080;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 const game = new Game(canvas, ctx);
 
