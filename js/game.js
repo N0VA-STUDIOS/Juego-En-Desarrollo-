@@ -46,11 +46,13 @@ class Game {
         this.player.update(this.input, this.groundY);
         document.getElementById('hp-fill').style.width = `${Math.max(0, this.player.hp)}%`;
 
-       if (this.enemies.length === 0 && !this.bossActive) {
+      if (this.enemies.length === 0 && !this.bossActive) {
     this.wave++;
-    document.getElementById('wave-txt').innerText = `OLEADA: ${this.wave}`;
 
-    // 👑 CHECK BOSS
+    document.getElementById('wave-txt').innerText =
+        `OLEADA: ${this.wave}`;
+
+    // 👑 BOSS CHECK
     if (this.wave % this.bossEvery === 0) {
         this.spawnBoss();
     } else {
@@ -121,4 +123,17 @@ class Game {
         document.getElementById('gameover-menu').classList.add('hidden');
         this.gameState = 'PLAYING';
     }
+}
+
+spawnBoss() {
+    this.bossActive = true;
+
+    this.boss = new Enemy(
+        this.canvas.width / 2,
+        100,
+        this.wave * 0.3
+    );
+
+    this.boss.hp = 200 + this.wave * 50; // más vida
+    this.enemies.push(this.boss);
 }
